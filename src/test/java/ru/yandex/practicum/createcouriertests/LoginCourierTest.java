@@ -49,7 +49,8 @@ public class LoginCourierTest extends BaseTest {
         courier.setPassword("");
         Response response = courier.login();
         courier.setPassword(realPassword);
-        assertEquals(504, response.statusCode());
+        assertEquals(400, response.statusCode());
+        assertEquals("Недостаточно данных для входа", response.then().extract().body().jsonPath().getString("message"));
     }
 
     @Test

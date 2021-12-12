@@ -26,7 +26,7 @@ public class CreateCourierTest extends BaseTest {
 
     @Test
     public void createDuplicateCourierTest() throws JsonProcessingException {
-        courier = new Courier("login12345", "password12345", "name12345");
+        courier = new Courier();
         courier.register();
         assertTrue(courier.isRegistered());
         Courier courier2 = new Courier(courier.getLogin(), courier.getPassword(), courier.getFirstName());
@@ -38,14 +38,12 @@ public class CreateCourierTest extends BaseTest {
     @Test
     public void createDuplicateLoginCourierTest() throws JsonProcessingException {
         courier = new Courier();
-        courier.setLogin("login67575745");
         courier.register();
         Courier courier2 = new Courier();
         courier2.setLogin(courier.getLogin());
         Response response = courier2.register();
         assertEquals(409, response.statusCode());
         assertEquals("Этот логин уже используется. Попробуйте другой.", response.then().extract().body().jsonPath().getString("message"));
-
     }
 
     @Test

@@ -34,9 +34,9 @@ public class OrderTest extends BaseTest {
     static Stream<Arguments> colorProvider() {
 
         return Stream.of(
-                Arguments.arguments(Arrays.asList("BLACK", "GREY")),
-                Arguments.arguments(Arrays.asList("BLACK")),
-                Arguments.arguments(Collections.emptyList())
+                Arguments.of(Arrays.asList("BLACK", "GREY")),
+                Arguments.of(Arrays.asList("BLACK")),
+                Arguments.of(Collections.emptyList())
         );
     }
 

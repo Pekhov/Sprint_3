@@ -1,5 +1,6 @@
 package ru.yandex.practicum;
 
+import io.qameta.allure.Step;
 import io.qameta.allure.internal.shadowed.jackson.core.JsonProcessingException;
 import io.qameta.allure.internal.shadowed.jackson.databind.ObjectMapper;
 import io.qameta.allure.internal.shadowed.jackson.databind.node.ObjectNode;
@@ -75,6 +76,7 @@ public class Courier {
         return firstName;
     }
 
+    @Step
     public Response register() throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -95,6 +97,7 @@ public class Courier {
         return response;
     }
 
+    @Step
     public Response login() throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -122,6 +125,7 @@ public class Courier {
                 .when().get("/api/v1/orders");
     }
 
+    @Step
     public Response acceptOrder(Order order) throws JsonProcessingException {
 
         return given()
@@ -130,6 +134,7 @@ public class Courier {
                 .when().put("/api/v1/orders/accept/{id}", order.getId());
     }
 
+    @Step
     public boolean unregistered() throws JsonProcessingException {
         Response response = given()
                 .header("Content-type", "application/json")
